@@ -63,7 +63,32 @@ button:hover {
     text-align:left;
     line-height:1.8;
 }
+.scan-line {
+    width:100%;
+    height:3px;
+    background:#ff0033;
+    animation:scan 1.5s infinite;
+    margin-top:15px;
+    box-shadow:0 0 15px #ff0033;
+}
 
+@keyframes scan {
+
+0% {
+    transform:translateX(-100%);
+}
+
+100% {
+    transform:translateX(100%);
+}
+
+}
+
+.status {
+    color:#ff0033;
+    font-weight:bold;
+    margin-top:15px;
+}
 </style>
 
 </head>
