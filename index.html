@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>IP Tracer</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body {
+    margin:0;
+    background:#050505;
+    color:white;
+    font-family:Arial, sans-serif;
+    text-align:center;
+}
+
+.container {
+    max-width:500px;
+    margin:50px auto;
+    padding:20px;
+}
+
+h1 {
+    color:#00ff99;
+    letter-spacing:2px;
+}
+
+.box {
+    background:#111;
+    padding:20px;
+    border-radius:15px;
+    margin-top:20px;
+    box-shadow:0 0 15px #00ff9944;
+}
+
+input {
+    width:80%;
+    padding:12px;
+    border-radius:8px;
+    border:none;
+    margin:10px;
+    font-size:16px;
+}
+
+button {
+    padding:12px 25px;
+    background:#00ff99;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover {
+    background:#00cc77;
+}
+
+.result {
+    text-align:left;
+    line-height:1.8;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>IP TRACER</h1>
+
+<p>Network information lookup</p>
+
+
+<div class="box">
+
+<input id="ip" placeholder="Enter IP (example: 8.8.8.8)">
+
+<br>
+
+<button onclick="traceIP()">TRACE</button>
+
+</div>
+
+
+<div class="box result" id="result">
+
+Waiting for scan...
+
+</div>
+
+
+</div>
+
+
+<script>
+
+async function traceIP(){
+
+let ip = document.getElementById("ip").value;
+
+let result = document.getElementById("result");
+
+result.innerHTML = "Scanning...";
+
+
+try {
+
+let response = await fetch(
+"https://ipapi.co/" + ip + "/json/"
+);
+
+
+let data = await response.json();
+
+
+result.innerHTML = `
+
+<b>IP:</b> ${data.ip}<br>
+
+<b>Country:</b> ${data.country_name}<br>
+
+<b>Region:</b> ${data.region}<br>
+
+<b>City:</b> ${data.city}<br>
+
+<b>ISP:</b> ${data.org}<br>
+
+<b>ASN:</b> ${data.asn}<br>
+
+<b>Timezone:</b> ${data.timezone}
+
+`;
+
+}
+
+catch {
+
+result.innerHTML="Error finding IP information.";
+
+}
+
+}
+
+</script>
+
+
+</body>
+</html>
