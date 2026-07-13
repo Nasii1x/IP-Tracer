@@ -261,7 +261,6 @@ MY IP
 
 
 
-
 <div class="card" id="result">
 
 
@@ -276,6 +275,18 @@ READY
 
 
 <br>
+
+Waiting for scan...
+
+</div>
+
+
+
+
+</div>
+
+
+
 
 <script>
 
@@ -328,41 +339,13 @@ document.getElementById("scanLog").innerHTML =
 
 await new Promise(resolve => setTimeout(resolve, 800));
 try{
+
 let response = await fetch(
 "http://ip-api.com/json/"+ip
 );
 
 let data = await response.json();
-let data = await response.json();
 
-result.innerHTML=`
-<div class="fade">
-
-<div class="info-section">
-<div class="info-title">
-SYSTEM STATUS
-</div>
-<div class="info-line">
-● ONLINE
-</div>
-<div class="info-line">
-Scan complete
-</div>
-</div>
-
-<div class="info-section">
-<div class="info-title">
-PUBLIC IP
-</div>
-<div class="info-line">
-${data.ip}
-</div>
-</div>
-
-<div class="info-section">
-<div class="info-title">
-LOCATION DATA
-</div>
 result.innerHTML=`
 <div class="fade">
 
@@ -419,6 +402,34 @@ ASN: ${data.as}
 
 </div>
 `;
+
+}catch{
+result.innerHTML="Error finding IP information.";
+}
+
+}
+
+async function myIP(){
+
+try{
+
+let response = await fetch(
+"https://api.ipify.org?format=json"
+);
+
+let data = await response.json();
+
+traceIP(data.ip);
+
+}
+
+catch{
+
+alert("Could not detect IP");
+
+}
+
+}
 
 </script>
 
