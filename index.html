@@ -1,215 +1,301 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
 
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<title>IP Tracer</title>
+<head>
+
+<title>IP Tracer Pro</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
 <style>
 
-body {
-    margin:0;
-    background:#050505;
-    color:white;
-    font-family:Arial, sans-serif;
-    text-align:center;
+body{
+
+margin:0;
+background:#050505;
+color:white;
+font-family:Arial, sans-serif;
+text-align:center;
+
 }
 
-.container {
-    max-width:500px;
-    margin:50px auto;
-    padding:20px;
+
+.container{
+
+max-width:600px;
+margin:40px auto;
+padding:20px;
+
 }
 
-h1 {
-    color:#ff0033;
-    letter-spacing:2px;
+
+h1{
+
+color:#ff0033;
+letter-spacing:3px;
+
 }
 
-.box {
-    background:#111;
-    padding:20px;
-    border-radius:15px;
-    margin-top:20px;
-    box-shadow:0 0 20px #ff003333;
+
+p{
+
+color:#aaa;
+
 }
 
-input {
-    width:80%;
-    padding:12px;
-    border-radius:8px;
-    border:none;
-    margin:10px;
-    font-size:16px;
+
+
+.card{
+
+background:#111;
+padding:20px;
+border-radius:15px;
+margin-top:20px;
+box-shadow:0 0 20px #ff003333;
+
 }
+
+
+
+input{
+
+width:80%;
+padding:12px;
+border-radius:8px;
+border:none;
+font-size:16px;
+
+}
+
+
 
 button{
+
 margin:10px;
-padding:12px 20px;
-border:0;
+padding:12px 25px;
+border:none;
 border-radius:8px;
 background:#ff0033;
 color:#000;
 font-weight:bold;
 cursor:pointer;
-}
-}
-
-button:hover {
-    background:#cc0029;
-}
-
-.result {
-    text-align:left;
-    line-height:1.8;
-}
-.scan-line {
-    width:100%;
-    height:3px;
-    background:#ff0033;
-    animation:scan 1.5s infinite;
-    margin-top:15px;
-    box-shadow:0 0 15px #ff0033;
-}
-
-@keyframes scan {
-
-0% {
-    transform:translateX(-100%);
-}
-
-100% {
-    transform:translateX(100%);
-}
 
 }
 
-.status {
-    color:#ff0033;
-    font-weight:bold;
-    margin-top:15px;
+
+
+button:hover{
+
+background:#cc0029;
+
 }
+
+
+
+.status{
+
+color:#ff0033;
+font-weight:bold;
+
+}
+
+
+
+.scan-line{
+
+width:100%;
+height:3px;
+background:#ff0033;
+margin-top:15px;
+box-shadow:0 0 15px #ff0033;
+
+animation:scan 1.5s infinite;
+
+}
+
+
+
+@keyframes scan{
+
+0%{
+
+transform:translateX(-100%);
+
+}
+
+
+100%{
+
+transform:translateX(100%);
+
+}
+
+}
+
+
+
 .info-section{
-    margin-top:15px;
-    padding:15px;
-    background:#0b0b0b;
-    border-left:3px solid #ff0033;
-    border-radius:10px;
+
+margin-top:15px;
+padding:15px;
+background:#0b0b0b;
+border-left:3px solid #ff0033;
+border-radius:10px;
+text-align:left;
+
 }
+
+
 
 .info-title{
-    color:#ff0033;
-    font-weight:bold;
-    letter-spacing:2px;
-    margin-bottom:10px;
+
+color:#ff0033;
+font-weight:bold;
+letter-spacing:2px;
+margin-bottom:10px;
+
 }
+
+
 
 .info-line{
-    padding:5px 0;
-    color:white;
+
+padding:5px 0;
+
 }
 
+
+
 .fade{
-    animation:fadeIn 0.8s;
+
+animation:fadeIn .8s;
+
 }
+
+
 
 @keyframes fadeIn{
 
 from{
-    opacity:0;
-    transform:translateY(10px);
+
+opacity:0;
+transform:translateY(10px);
+
 }
+
 
 to{
-    opacity:1;
-    transform:translateY(0);
+
+opacity:1;
+transform:translateY(0);
+
 }
 
 }
+
+
 </style>
-#map{
 
-height:300px;
-
-width:100%;
-
-border-radius:12px;
-
-margin-top:15px;
-
-border:2px solid #ff0033;
-
-}
-
-.leaflet-container{
-
-background:#050505;
-
-}
 
 </head>
 
+
+
 <body>
+
+
 
 <div class="container">
 
-<h1>IP TRACER</h1>
-
-<p>Network information lookup</p>
 
 
-<div class="box">
+<h1>IP TRACER PRO</h1>
 
-<input id="ip" placeholder="Enter IP (example: 8.8.8.8)">
+<p>Network Information Dashboard</p>
+
+
+
+
+<div class="card">
+
+
+<input id="ip" placeholder="Enter IP Address">
+
 
 <br>
 
-<button onclick="traceIP()">TRACE</button>
+
+<button onclick="traceIP()">
+TRACE
+</button>
+
+
+<button onclick="myIP()">
+MY IP
+</button>
+
 
 </div>
 
 
-<div class="card result" id="result">
-    <div class="card">
 
-<div class="info-title">
-MAP LOCATION
-</div>
 
-<div id="map"></div>
 
-</div>
+<div class="card" id="result">
+
 
 <div class="status">
+
 READY
+
 </div>
+
 
 <div class="scan-line"></div>
 
+
 <br>
+
 
 Waiting for scan...
 
+
 </div>
 
 
+
+
+
 </div>
+
+
+
+
 
 
 <script>
 
+
+
 async function traceIP(ip=null){
+
+
 
 let result=document.getElementById("result");
 
+
+
 if(!ip){
-    ip=document.getElementById("ip").value;
+
+ip=document.getElementById("ip").value;
+
 }
 
-result.innerHTML = `
+
+
+result.innerHTML=`
+
 <div class="status">
 SCANNING...
 </div>
@@ -217,301 +303,233 @@ SCANNING...
 <div class="scan-line"></div>
 
 <br>
+
 Analysing IP information...
+
 `;
 
 
-try {
+
+try{
+
+
 
 let response = await fetch(
-"https://ipwho.is/" + ip
+
+"https://ipapi.co/"+ip+"/json/"
+
 );
+
+
 
 let data = await response.json();
 
 
-if(!data.success){
-    throw new Error("Lookup failed");
-}
 
 
-result.innerHTML = `
+
+result.innerHTML=`
 
 <div class="fade">
 
+
+
 <div class="info-section">
 
+
 <div class="info-title">
+
 IP INFORMATION
+
 </div>
+
 
 <div class="info-line">
-IP Address: ${data.ip}
-</div>
+
+IP: ${data.ip}
 
 </div>
+
+
+</div>
+
+
+
 
 
 <div class="info-section">
 
+
 <div class="info-title">
-LOCATION DATA
+
+LOCATION
+
 </div>
 
-<div class="info-line">
-Country: ${data.country}
-</div>
 
 <div class="info-line">
+
+Country: ${data.country_name}
+
+</div>
+
+
+<div class="info-line">
+
 Region: ${data.region}
+
 </div>
 
+
 <div class="info-line">
+
 City: ${data.city}
+
 </div>
+
 
 <div class="info-line">
-Timezone: ${data.timezone.id}
-</div>
+
+Timezone: ${data.timezone}
 
 </div>
+
+
+</div>
+
+
+
 
 
 <div class="info-section">
 
+
 <div class="info-title">
-NETWORK DATA
+
+NETWORK
+
 </div>
+
 
 <div class="info-line">
-ISP: ${data.connection.isp}
+
+ISP: ${data.org}
+
 </div>
+
 
 <div class="info-line">
-ASN: ${data.connection.asn}
-</div>
+
+ASN: ${data.asn}
 
 </div>
+
+
+</div>
+
+
+
 
 
 <div class="info-section">
 
+
 <div class="info-title">
+
 STATUS
+
 </div>
+
 
 <div class="info-line">
+
 Connection: ACTIVE ✅
-</div>
 
 </div>
+
+
+</div>
+
+
 
 </div>
 
 `;
 
 
-let map = L.map('map').setView(
-[data.latitude, data.longitude],
-6
-);
-
-
-L.tileLayer(
-'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
-).addTo(map);
-
-
-L.marker(
-[data.latitude,data.longitude]
-)
-.addTo(map)
-.bindPopup("Approximate IP Location")
-.openPopup();
-
 
 }
 
 
-catch(error){
 
-result.innerHTML =
+catch{
+
+
+result.innerHTML=
+
 "Error finding IP information.";
 
-console.log(error);
 
 }
 
+
+
 }
 
 
-let ip = document.getElementById("ip").value;
-
-let result = document.getElementById("result");
-
-result.innerHTML=`
-
-<div class="status">
-SCANNING...
-</div>
-
-<div class="scan-line"></div>
-
-<br>
-
-Analysing IP information...
-
-`;
 
 
-try {
+
+
+
+async function myIP(){
+
+
+
+try{
+
+
 
 let response = await fetch(
-"https://ipwho.is/" + ip
-);
 
-let data = await response.json();
+"https://api.ipify.org?format=json"
 
-if(!data.success){
-    throw new Error("IP lookup failed");
-}
-
-
-let data = await response.json();
-if(data.latitude && data.longitude){
-
-let map = L.map('map').setView(
-[data.latitude, data.longitude],
-8
 );
 
 
-L.tileLayer(
-'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-{
-attribution:'© OpenStreetMap'
-}
-).addTo(map);
+
+let data = await response.json();
 
 
-L.marker(
-[data.latitude,data.longitude]
-)
-.addTo(map)
-.bindPopup("Approximate IP Location")
-.openPopup();
+
+traceIP(data.ip);
+
+
 
 }
 
 
 
-L.tileLayer(
-'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-{
-maxZoom:18
-}
-).addTo(map);
+catch{
 
 
-L.marker(
-[data.latitude,data.longitude]
-)
-.addTo(map)
-.bindPopup(
-"Approximate IP Location"
-)
-.openPopup();
+alert("Could not detect IP");
 
-
-result.innerHTML=`
-
-<div class="fade">
-
-<div class="info-section">
-
-<div class="info-title">
-IP INFORMATION
-</div>
-
-<div class="info-line">
-IP Address: ${data.ip}
-</div>
-
-</div>
-
-
-<div class="info-section">
-
-<div class="info-title">
-LOCATION DATA
-</div>
-
-<div class="info-line">
-Country: ${data.country}
-</div>
-
-<div class="info-line">
-Region: ${data.region}
-</div>
-
-<div class="info-line">
-City: ${data.city}
-</div>
-
-<div class="info-line">
-Timezone: ${data.timezone.id}
-</div>
-
-</div>
-
-
-
-<div class="info-section">
-
-<div class="info-title">
-NETWORK DATA
-</div>
-
-<div class="info-line">
-ISP: ${data.connection.isp}
-</div>
-
-<div class="info-line">
-ASN: ${data.connection.asn}
-</div>
-
-</div>
-
-
-<div class="info-section">
-
-<div class="info-title">
-STATUS
-</div>
-
-<div class="info-line">
-Connection: ACTIVE ✅
-</div>
-
-</div>
-
-
-</div>
-
-`;
 
 }
 
-catch {
 
-result.innerHTML="Error finding IP information.";
 
 }
 
-}
+
+
 
 </script>
 
 
+
+
 </body>
-</html>   
+
+</html>
