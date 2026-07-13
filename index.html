@@ -33,7 +33,7 @@ text-shadow:0 0 10px #ff0033;
 body{
 
 margin:0;
-background:#050505;
+background:#000000;
 color:white;
 font-family:Arial, sans-serif;
 text-align:center;
@@ -66,13 +66,9 @@ color:#aaa;
 
 
 
-.card{
+.input-section{
 
-background:#111;
-padding:20px;
-border-radius:15px;
 margin-top:20px;
-box-shadow:0 0 20px #ff003333;
 
 }
 
@@ -117,6 +113,7 @@ background:#cc0029;
 
 color:#ff0033;
 font-weight:bold;
+margin-top:30px;
 
 }
 
@@ -155,35 +152,11 @@ transform:translateX(100%);
 
 
 
-.info-section{
-
-margin-top:15px;
-padding:15px;
-background:#0b0b0b;
-border-left:3px solid #ff0033;
-border-radius:10px;
-text-align:left;
-transition:0.3s;
-
-}
-
-
-
-.info-title{
-
-color:#ff0033;
-font-weight:bold;
-letter-spacing:2px;
-margin-bottom:10px;
-
-}
-
-
-
 .info-line{
 
-padding:5px 0;
+padding:10px 0;
 color: white;
+font-size:16px;
 
 }
 
@@ -216,6 +189,12 @@ transform:translateY(0);
 
 }
 
+.result-section{
+
+margin-top:30px;
+
+}
+
 
 </style>
 
@@ -242,7 +221,7 @@ root@Nas:~$
 
 
 
-<div class="card">
+<div class="input-section">
 
 <input id="ip" placeholder="Enter IP Address">
 
@@ -261,7 +240,7 @@ MY IP
 
 
 
-<div class="card" id="result">
+<div class="result-section" id="result">
 
 
 <div class="status">
@@ -349,65 +328,50 @@ let data = await response.json();
 result.innerHTML=`
 <div class="fade">
 
-<div class="info-section">
-<div class="info-title">
-SYSTEM STATUS
-</div>
-<div class="info-line">
-● ONLINE
-</div>
-<div class="info-line">
-Scan complete
-</div>
+<div class="status">
+✓ SCAN COMPLETE
 </div>
 
-<div class="info-section">
-<div class="info-title">
-PUBLIC IP
-</div>
+<div class="scan-line"></div>
+
 <div class="info-line">
-${data.ip}
-</div>
+<br>
+IP: ${data.ip}
 </div>
 
-<div class="info-section">
-<div class="info-title">
-LOCATION DATA
-</div>
 <div class="info-line">
-🌍 Country: ${data.country_name}
+Country: ${data.country_name}
 </div>
+
 <div class="info-line">
-🏙 City: ${data.city}
+City: ${data.city}
 </div>
+
 <div class="info-line">
 Region: ${data.region}
 </div>
+
 <div class="info-line">
 Timezone: ${data.timezone}
 </div>
-</div>
 
-<div class="info-section">
-<div class="info-title">
-NETWORK DATA
-</div>
 <div class="info-line">
 ISP: ${data.org}
 </div>
+
 <div class="info-line">
 Latitude: ${data.latitude}
 </div>
+
 <div class="info-line">
 Longitude: ${data.longitude}
-</div>
 </div>
 
 </div>
 `;
 
 }catch(error){
-result.innerHTML="Error finding IP information.";
+result.innerHTML="<div class='status'>✗ ERROR</div><div class='scan-line'></div><br>Error finding IP information.";
 console.log(error);
 }
 
