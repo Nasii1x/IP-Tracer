@@ -362,136 +362,85 @@ result.innerHTML=`
 <div class="fade">
 
 
-
 <div class="info-section">
 
-
 <div class="info-title">
-
-IP INFORMATION
-
+SYSTEM STATUS
 </div>
-
 
 <div class="info-line">
-
-IP: ${data.ip}
-
+● ONLINE
 </div>
 
-
+<div class="info-line">
+Scan complete
 </div>
 
-
+</div>
 
 
 
 <div class="info-section">
 
+<div class="info-title">
+PUBLIC IP
+</div>
+
+<div class="info-line">
+${data.ip}
+</div>
+
+</div>
+
+
+
+<div class="info-section">
 
 <div class="info-title">
-
-LOCATION
-
+LOCATION DATA
 </div>
 
-
 <div class="info-line">
-
-Country: ${data.country_name}
-
+🌍 Country: ${data.country_name}
 </div>
 
+<div class="info-line">
+🏙 City: ${data.city}
+</div>
 
 <div class="info-line">
-
 Region: ${data.region}
-
 </div>
 
-
 <div class="info-line">
-
-City: ${data.city}
-
-</div>
-
-
-<div class="info-line">
-
 Timezone: ${data.timezone}
-
 </div>
 
-
 </div>
-
 
 
 
 
 <div class="info-section">
 
-
 <div class="info-title">
-
-NETWORK
-
+NETWORK DATA
 </div>
 
-
 <div class="info-line">
-
 ISP: ${data.org}
-
 </div>
 
-
 <div class="info-line">
-
 ASN: ${data.asn}
-
 </div>
 
-
 </div>
-
-
-
-
-
-<div class="info-section">
-
-
-<div class="info-title">
-
-STATUS
-
-</div>
-
-
-<div class="info-line">
-
-Connection: ACTIVE ✅
-
-</div>
-
-
-</div>
-
 
 
 </div>
 
 `;
-
-
-
-}
-
-
-
-catch{
 
 
 result.innerHTML=
