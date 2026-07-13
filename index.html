@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <title>IP Tracer</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -127,6 +130,25 @@ to{
 
 }
 </style>
+#map{
+
+height:300px;
+
+width:100%;
+
+border-radius:12px;
+
+margin-top:15px;
+
+border:2px solid #ff0033;
+
+}
+
+.leaflet-container{
+
+background:#050505;
+
+}
 
 </head>
 
@@ -151,6 +173,15 @@ to{
 
 
 <div class="card result" id="result">
+    <div class="card">
+
+<div class="info-title">
+MAP LOCATION
+</div>
+
+<div id="map"></div>
+
+</div>
 
 <div class="status">
 READY
