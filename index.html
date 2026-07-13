@@ -341,10 +341,15 @@ await new Promise(resolve => setTimeout(resolve, 800));
 try{
 
 let response = await fetch(
-"https://geoip-db.com/api/v1/geoip?ip="+ip
+"http://ip-api.com/json/"+ip+"?fields=query,country,city,regionName,timezone,isp,as"
 );
 
 let data = await response.json();
+
+if(data.status === "fail"){
+result.innerHTML="Error finding IP information.";
+return;
+}
 
 result.innerHTML=`
 <div class="fade">
@@ -366,7 +371,7 @@ Scan complete
 PUBLIC IP
 </div>
 <div class="info-line">
-${data.ip}
+${data.query}
 </div>
 </div>
 
@@ -375,13 +380,13 @@ ${data.ip}
 LOCATION DATA
 </div>
 <div class="info-line">
-🌍 Country: ${data.country_name}
+🌍 Country: ${data.country}
 </div>
 <div class="info-line">
 🏙 City: ${data.city}
 </div>
 <div class="info-line">
-Region: ${data.state}
+Region: ${data.regionName}
 </div>
 <div class="info-line">
 Timezone: ${data.timezone}
@@ -396,10 +401,7 @@ NETWORK DATA
 ISP: ${data.isp}
 </div>
 <div class="info-line">
-Latitude: ${data.latitude}
-</div>
-<div class="info-line">
-Longitude: ${data.longitude}
+ASN: ${data.as}
 </div>
 </div>
 
