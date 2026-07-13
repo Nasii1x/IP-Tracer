@@ -224,9 +224,15 @@ Analysing IP information...
 
 try {
 
-let response=await fetch(
-"https://ipwho.is/"+ip
+let response = await fetch(
+"https://ipwho.is/" + ip
 );
+
+let data = await response.json();
+
+if(!data.success){
+    throw new Error("IP lookup failed");
+}
 
 
 let data = await response.json();
