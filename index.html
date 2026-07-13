@@ -341,15 +341,10 @@ await new Promise(resolve => setTimeout(resolve, 800));
 try{
 
 let response = await fetch(
-"http://ip-api.com/json/"+ip+"?fields=query,country,city,regionName,timezone,isp,as"
+"https://geo.ipify.org/api/v2/country,city?ipAddress="+ip
 );
 
 let data = await response.json();
-
-if(data.status === "fail"){
-result.innerHTML="Error finding IP information.";
-return;
-}
 
 result.innerHTML=`
 <div class="fade">
@@ -371,7 +366,7 @@ Scan complete
 PUBLIC IP
 </div>
 <div class="info-line">
-${data.query}
+${data.ip}
 </div>
 </div>
 
@@ -380,16 +375,22 @@ ${data.query}
 LOCATION DATA
 </div>
 <div class="info-line">
-🌍 Country: ${data.country}
+🌍 Country: ${data.location.country}
 </div>
 <div class="info-line">
-🏙 City: ${data.city}
+🏙 City: ${data.location.city}
 </div>
 <div class="info-line">
-Region: ${data.regionName}
+Region: ${data.location.region}
 </div>
 <div class="info-line">
-Timezone: ${data.timezone}
+Timezone: ${data.location.timezone}
+</div>
+<div class="info-line">
+Latitude: ${data.location.lat}
+</div>
+<div class="info-line">
+Longitude: ${data.location.lng}
 </div>
 </div>
 
@@ -399,9 +400,6 @@ NETWORK DATA
 </div>
 <div class="info-line">
 ISP: ${data.isp}
-</div>
-<div class="info-line">
-ASN: ${data.as}
 </div>
 </div>
 
