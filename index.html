@@ -201,21 +201,80 @@ let response = await fetch(
 let data = await response.json();
 
 
-result.innerHTML = `
+result.innerHTML=`
 
-<b>IP:</b> ${data.ip}<br>
+<div class="fade">
 
-<b>Country:</b> ${data.country_name}<br>
+<div class="info-section">
 
-<b>Region:</b> ${data.region}<br>
+<div class="info-title">
+IP INFORMATION
+</div>
 
-<b>City:</b> ${data.city}<br>
+<div class="info-line">
+IP Address: ${data.ip}
+</div>
 
-<b>ISP:</b> ${data.org}<br>
+</div>
 
-<b>ASN:</b> ${data.asn}<br>
 
-<b>Timezone:</b> ${data.timezone}
+<div class="info-section">
+
+<div class="info-title">
+LOCATION DATA
+</div>
+
+<div class="info-line">
+Country: ${data.country_name}
+</div>
+
+<div class="info-line">
+Region: ${data.region}
+</div>
+
+<div class="info-line">
+City: ${data.city}
+</div>
+
+<div class="info-line">
+Timezone: ${data.timezone}
+</div>
+
+</div>
+
+
+
+<div class="info-section">
+
+<div class="info-title">
+NETWORK DATA
+</div>
+
+<div class="info-line">
+ISP: ${data.org}
+</div>
+
+<div class="info-line">
+ASN: ${data.asn}
+</div>
+
+</div>
+
+
+<div class="info-section">
+
+<div class="info-title">
+STATUS
+</div>
+
+<div class="info-line">
+Connection: ACTIVE ✅
+</div>
+
+</div>
+
+
+</div>
 
 `;
 
