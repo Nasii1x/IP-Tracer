@@ -328,11 +328,11 @@ document.getElementById("scanLog").innerHTML =
 
 await new Promise(resolve => setTimeout(resolve, 800));
 try{
-
 let response = await fetch(
-"https://ipapi.co/"+ip+"/json/"
+"http://ip-api.com/json/"+ip
 );
 
+let data = await response.json();
 let data = await response.json();
 
 result.innerHTML=`
