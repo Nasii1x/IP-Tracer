@@ -296,15 +296,17 @@ ip=document.getElementById("ip").value;
 
 result.innerHTML=`
 
-<div class="status">
-SCANNING...
+<div class="status" id="scanStatus">
+INITIALISING SCANNER...
 </div>
 
 <div class="scan-line"></div>
 
 <br>
 
-Analysing IP information...
+<div id="scanLog">
+Preparing connection...
+</div>
 
 `;
 
