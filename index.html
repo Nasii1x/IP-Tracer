@@ -311,7 +311,34 @@ Preparing connection...
 `;
 
 
+await new Promise(resolve => setTimeout(resolve, 800));
 
+document.getElementById("scanStatus").innerHTML =
+"CONNECTING TO DATABASE...";
+
+document.getElementById("scanLog").innerHTML =
+"✓ Connection established";
+
+
+await new Promise(resolve => setTimeout(resolve, 800));
+
+document.getElementById("scanStatus").innerHTML =
+"ANALYSING IP...";
+
+document.getElementById("scanLog").innerHTML =
+"✓ IP detected";
+
+
+await new Promise(resolve => setTimeout(resolve, 800));
+
+document.getElementById("scanStatus").innerHTML =
+"FETCHING NETWORK DATA...";
+
+document.getElementById("scanLog").innerHTML =
+"✓ Data received";
+
+
+await new Promise(resolve => setTimeout(resolve, 800));
 try{
 
 
