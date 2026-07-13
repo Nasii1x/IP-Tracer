@@ -341,7 +341,7 @@ await new Promise(resolve => setTimeout(resolve, 800));
 try{
 
 let response = await fetch(
-"https://geo.ipify.org/api/v2/country,city?ipAddress="+ip
+"https://ipapi.co/"+ip+"/json/"
 );
 
 let data = await response.json();
@@ -375,22 +375,16 @@ ${data.ip}
 LOCATION DATA
 </div>
 <div class="info-line">
-🌍 Country: ${data.location.country}
+🌍 Country: ${data.country_name}
 </div>
 <div class="info-line">
-🏙 City: ${data.location.city}
+🏙 City: ${data.city}
 </div>
 <div class="info-line">
-Region: ${data.location.region}
+Region: ${data.region}
 </div>
 <div class="info-line">
-Timezone: ${data.location.timezone}
-</div>
-<div class="info-line">
-Latitude: ${data.location.lat}
-</div>
-<div class="info-line">
-Longitude: ${data.location.lng}
+Timezone: ${data.timezone}
 </div>
 </div>
 
@@ -399,7 +393,13 @@ Longitude: ${data.location.lng}
 NETWORK DATA
 </div>
 <div class="info-line">
-ISP: ${data.isp}
+ISP: ${data.org}
+</div>
+<div class="info-line">
+Latitude: ${data.latitude}
+</div>
+<div class="info-line">
+Longitude: ${data.longitude}
 </div>
 </div>
 
