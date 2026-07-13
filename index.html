@@ -341,7 +341,7 @@ await new Promise(resolve => setTimeout(resolve, 800));
 try{
 
 let response = await fetch(
-"http://ip-api.com/json/"+ip
+"https://ipapi.co/"+ip+"/json/"
 );
 
 let data = await response.json();
@@ -366,7 +366,7 @@ Scan complete
 PUBLIC IP
 </div>
 <div class="info-line">
-${data.query}
+${data.ip}
 </div>
 </div>
 
@@ -375,13 +375,13 @@ ${data.query}
 LOCATION DATA
 </div>
 <div class="info-line">
-🌍 Country: ${data.country}
+🌍 Country: ${data.country_name}
 </div>
 <div class="info-line">
 🏙 City: ${data.city}
 </div>
 <div class="info-line">
-Region: ${data.regionName}
+Region: ${data.region}
 </div>
 <div class="info-line">
 Timezone: ${data.timezone}
@@ -393,18 +393,19 @@ Timezone: ${data.timezone}
 NETWORK DATA
 </div>
 <div class="info-line">
-ISP: ${data.isp}
+ISP: ${data.org}
 </div>
 <div class="info-line">
-ASN: ${data.as}
+ASN: ${data.asn}
 </div>
 </div>
 
 </div>
 `;
 
-}catch{
+}catch(error){
 result.innerHTML="Error finding IP information.";
+console.log(error);
 }
 
 }
@@ -423,9 +424,10 @@ traceIP(data.ip);
 
 }
 
-catch{
+catch(error){
 
 alert("Could not detect IP");
+console.log(error);
 
 }
 
