@@ -230,6 +230,28 @@ let response = await fetch(
 
 
 let data = await response.json();
+let map = L.map('map').setView(
+[data.latitude, data.longitude],
+5
+);
+
+
+L.tileLayer(
+'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+{
+maxZoom:18
+}
+).addTo(map);
+
+
+L.marker(
+[data.latitude,data.longitude]
+)
+.addTo(map)
+.bindPopup(
+"Approximate IP Location"
+)
+.openPopup();
 
 
 result.innerHTML=`
