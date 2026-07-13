@@ -276,45 +276,17 @@ READY
 
 <br>
 
-
-Waiting for scan...
-
-
-</div>
-
-
-
-
-
-</div>
-
-
-
-
-
-
 <script>
-
-
 
 async function traceIP(ip=null){
 
-
-
 let result=document.getElementById("result");
 
-
-
 if(!ip){
-
 ip=document.getElementById("ip").value;
-
 }
 
-
-
 result.innerHTML=`
-
 <div class="status" id="scanStatus">
 INITIALISING SCANNER...
 </div>
@@ -329,7 +301,6 @@ Preparing connection...
 
 `;
 
-
 await new Promise(resolve => setTimeout(resolve, 800));
 
 document.getElementById("scanStatus").innerHTML =
@@ -337,7 +308,6 @@ document.getElementById("scanStatus").innerHTML =
 
 document.getElementById("scanLog").innerHTML =
 "✓ Connection established";
-
 
 await new Promise(resolve => setTimeout(resolve, 800));
 
@@ -347,7 +317,6 @@ document.getElementById("scanStatus").innerHTML =
 document.getElementById("scanLog").innerHTML =
 "✓ IP detected";
 
-
 await new Promise(resolve => setTimeout(resolve, 800));
 
 document.getElementById("scanStatus").innerHTML =
@@ -355,7 +324,6 @@ document.getElementById("scanStatus").innerHTML =
 
 document.getElementById("scanLog").innerHTML =
 "✓ Data received";
-
 
 await new Promise(resolve => setTimeout(resolve, 800));
 try{
@@ -427,54 +395,29 @@ ASN: ${data.asn}
 result.innerHTML="Error finding IP information.";
 }
 
-
-
-
-
-
+}
 
 async function myIP(){
 
-
-
 try{
 
-
-
 let response = await fetch(
-
 "https://api.ipify.org?format=json"
-
 );
-
-
 
 let data = await response.json();
 
-
-
 traceIP(data.ip);
 
-
-
 }
-
-
 
 catch{
 
-
 alert("Could not detect IP");
 
-
 }
 
-
-
 }
-
-
-
 
 </script>
 
