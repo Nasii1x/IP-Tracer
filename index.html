@@ -230,10 +230,31 @@ let response = await fetch(
 
 
 let data = await response.json();
+if(data.latitude && data.longitude){
+
 let map = L.map('map').setView(
 [data.latitude, data.longitude],
-5
+8
 );
+
+
+L.tileLayer(
+'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+{
+attribution:'© OpenStreetMap'
+}
+).addTo(map);
+
+
+L.marker(
+[data.latitude,data.longitude]
+)
+.addTo(map)
+.bindPopup("Approximate IP Location")
+.openPopup();
+
+}
+
 
 
 L.tileLayer(
