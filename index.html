@@ -341,7 +341,7 @@ await new Promise(resolve => setTimeout(resolve, 800));
 try{
 
 let response = await fetch(
-"https://ipgeolocation.io/ipgeo?ip="+ip
+"https://geoip-db.com/api/v1/geoip?ip="+ip
 );
 
 let data = await response.json();
@@ -381,7 +381,7 @@ LOCATION DATA
 🏙 City: ${data.city}
 </div>
 <div class="info-line">
-Region: ${data.state_prov}
+Region: ${data.state}
 </div>
 <div class="info-line">
 Timezone: ${data.timezone}
@@ -396,7 +396,10 @@ NETWORK DATA
 ISP: ${data.isp}
 </div>
 <div class="info-line">
-ASN: ${data.asn}
+Latitude: ${data.latitude}
+</div>
+<div class="info-line">
+Longitude: ${data.longitude}
 </div>
 </div>
 
