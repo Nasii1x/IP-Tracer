@@ -201,7 +201,149 @@ Waiting for scan...
 
 <script>
 
-async function traceIP(){
+async function traceIP(ip=null){
+
+let result=document.getElementById("result");
+
+if(!ip){
+    ip=document.getElementById("ip").value;
+}
+
+result.innerHTML = `
+<div class="status">
+SCANNING...
+</div>
+
+<div class="scan-line"></div>
+
+<br>
+Analysing IP information...
+`;
+
+
+try {
+
+let response = await fetch(
+"https://ipwho.is/" + ip
+);
+
+let data = await response.json();
+
+
+if(!data.success){
+    throw new Error("Lookup failed");
+}
+
+
+result.innerHTML = `
+
+<div class="fade">
+
+<div class="info-section">
+
+<div class="info-title">
+IP INFORMATION
+</div>
+
+<div class="info-line">
+IP Address: ${data.ip}
+</div>
+
+</div>
+
+
+<div class="info-section">
+
+<div class="info-title">
+LOCATION DATA
+</div>
+
+<div class="info-line">
+Country: ${data.country}
+</div>
+
+<div class="info-line">
+Region: ${data.region}
+</div>
+
+<div class="info-line">
+City: ${data.city}
+</div>
+
+<div class="info-line">
+Timezone: ${data.timezone.id}
+</div>
+
+</div>
+
+
+<div class="info-section">
+
+<div class="info-title">
+NETWORK DATA
+</div>
+
+<div class="info-line">
+ISP: ${data.connection.isp}
+</div>
+
+<div class="info-line">
+ASN: ${data.connection.asn}
+</div>
+
+</div>
+
+
+<div class="info-section">
+
+<div class="info-title">
+STATUS
+</div>
+
+<div class="info-line">
+Connection: ACTIVE ✅
+</div>
+
+</div>
+
+</div>
+
+`;
+
+
+let map = L.map('map').setView(
+[data.latitude, data.longitude],
+6
+);
+
+
+L.tileLayer(
+'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+).addTo(map);
+
+
+L.marker(
+[data.latitude,data.longitude]
+)
+.addTo(map)
+.bindPopup("Approximate IP Location")
+.openPopup();
+
+
+}
+
+
+catch(error){
+
+result.innerHTML =
+"Error finding IP information.";
+
+console.log(error);
+
+}
+
+}
+
 
 let ip = document.getElementById("ip").value;
 
