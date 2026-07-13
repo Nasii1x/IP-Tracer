@@ -363,14 +363,42 @@ ${data.ip}
 <div class="info-title">
 LOCATION DATA
 </div>
+result.innerHTML=`
+<div class="fade">
+
+<div class="info-section">
+<div class="info-title">
+SYSTEM STATUS
+</div>
 <div class="info-line">
-🌍 Country: ${data.country_name}
+● ONLINE
+</div>
+<div class="info-line">
+Scan complete
+</div>
+</div>
+
+<div class="info-section">
+<div class="info-title">
+PUBLIC IP
+</div>
+<div class="info-line">
+${data.query}
+</div>
+</div>
+
+<div class="info-section">
+<div class="info-title">
+LOCATION DATA
+</div>
+<div class="info-line">
+🌍 Country: ${data.country}
 </div>
 <div class="info-line">
 🏙 City: ${data.city}
 </div>
 <div class="info-line">
-Region: ${data.region}
+Region: ${data.regionName}
 </div>
 <div class="info-line">
 Timezone: ${data.timezone}
@@ -382,43 +410,15 @@ Timezone: ${data.timezone}
 NETWORK DATA
 </div>
 <div class="info-line">
-ISP: ${data.org}
+ISP: ${data.isp}
 </div>
 <div class="info-line">
-ASN: ${data.asn}
+ASN: ${data.as}
 </div>
 </div>
 
 </div>
 `;
-
-}catch{
-result.innerHTML="Error finding IP information.";
-}
-
-}
-
-async function myIP(){
-
-try{
-
-let response = await fetch(
-"https://api.ipify.org?format=json"
-);
-
-let data = await response.json();
-
-traceIP(data.ip);
-
-}
-
-catch{
-
-alert("Could not detect IP");
-
-}
-
-}
 
 </script>
 
