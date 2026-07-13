@@ -139,7 +139,19 @@ let ip = document.getElementById("ip").value;
 
 let result = document.getElementById("result");
 
-result.innerHTML = "Scanning...";
+result.innerHTML=`
+
+<div class="status">
+SCANNING...
+</div>
+
+<div class="scan-line"></div>
+
+<br>
+
+Analysing IP information...
+
+`;
 
 
 try {
